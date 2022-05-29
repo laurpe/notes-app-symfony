@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Form from "./Form";
+
 import axios from "axios";
 
 const AddNote = ({ notes, setNotes }) => {
@@ -18,30 +20,12 @@ const AddNote = ({ notes, setNotes }) => {
     };
 
     return (
-        <div>
-            <h2>Add new note</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        name="title"
-                        type="text"
-                        value={inputs.title}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="note">Note</label>
-                    <input
-                        name="note"
-                        type="text"
-                        value={inputs.note}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <Form
+            title="Add new note"
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            inputs={inputs}
+        />
     );
 };
 

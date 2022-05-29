@@ -7,8 +7,12 @@ const Layout = ({ children }) => {
             <header>
                 <nav>
                     <ul>
-                        <Link to="/">notes</Link>
-                        <Link to="/add">add note</Link>
+                        <li>
+                            <Link to="/">Notes</Link>
+                        </li>
+                        <li>
+                            <Link to="/add">Add note</Link>
+                        </li>
                     </ul>
                 </nav>
             </header>

@@ -11,7 +11,7 @@ const Notes = ({ notes, setNotes }) => {
     };
 
     return (
-        <>
+        <div className="container">
             {notes.map((note) => (
                 <div key={note.id} className="card">
                     <h2>{note.title}</h2>
@@ -23,7 +23,7 @@ const Notes = ({ notes, setNotes }) => {
                     <Link to={`/notes/${note.id}`}>edit</Link>
                 </div>
             ))}
-        </>
+        </div>
     );
 };
 
