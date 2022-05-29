@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 const EditNote = ({ notes, setNotes }) => {
-    const id = useParams().id;
     const [inputs, setInputs] = useState({ title: "", note: "" });
+    const id = useParams().id;
+    let navigate = useNavigate();
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -16,6 +17,7 @@ const EditNote = ({ notes, setNotes }) => {
         const response = await axios.put(`/api/notes/${id}`, inputs);
         setNotes([...notes, response.data]);
         setInputs({ title: "", note: "" });
+        navigate("/");
     };
 
     return (

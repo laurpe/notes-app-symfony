@@ -83,6 +83,7 @@ class NoteController extends AbstractController
         $em->flush();
 
         $data = [
+            "id" => $note->getId(),
             "title" => $note->getTitle(),
             "note" => $note->getNote(),
             "date" => $note->getDate()
