@@ -27,6 +27,7 @@ const Form = ({ handleSubmit, handleChange, title, inputs }) => {
                             name="note"
                             value={inputs.note}
                             onChange={handleChange}
+                            maxLength="255"
                         />
                     </div>
                 </div>
