@@ -11,15 +11,9 @@ const EditNote = ({ notes, setNotes }) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
     };
 
-    let formData = new FormData();
-
-    formData.append("title", inputs.title);
-    formData.append("note", inputs.note);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        //TODO: check route
-        const response = await axios.put(`/api/notes/${id}`, formData);
+        const response = await axios.put(`/api/notes/${id}`, inputs);
         setNotes([...notes, response.data]);
         setInputs({ title: "", note: "" });
     };

@@ -9,15 +9,10 @@ const AddNote = ({ notes, setNotes }) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
     };
 
-    let formData = new FormData();
-
-    formData.append("title", inputs.title);
-    formData.append("note", inputs.note);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await axios.post("/api/notes", formData);
+        const response = await axios.post("/api/notes", inputs);
         setNotes([...notes, response.data]);
         setInputs({ title: "", note: "" });
     };

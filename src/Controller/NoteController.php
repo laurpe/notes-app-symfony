@@ -35,9 +35,13 @@ class NoteController extends AbstractController
     public function new(Request $request, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
+
+        $content = json_decode($request->getContent());
+
         $note = new Note();
-        $note->setTitle($request->request->get("title"));
-        $note->setNote($request->request->get("note"));
+
+        $note->setTitle($content->title);
+        $note->setNote($content->note);
         $note->setDate(new \DateTime("now"));
 
         $em->persist($note);
@@ -68,18 +72,19 @@ class NoteController extends AbstractController
         $em = $doctrine->getManager();
 
         $note = $em->getRepository(Note::class)->find($id);
+
         if (!$note) {
             return $this->json("No project found for id ".$id, 404);
         }
 
         $content = json_decode($request->getContent());
-        // $note->setTitle($content->title);
+        $note->setTitle($content->title);
         $note->setNote($content->note);
         $em->flush();
 
         $data = [
             "title" => $note->getTitle(),
-            "note" => $note->getName(),
+            "note" => $note->getNote(),
             "date" => $note->getDate()
         ];
 
