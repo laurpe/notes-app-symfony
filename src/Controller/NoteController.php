@@ -31,6 +31,13 @@ class NoteController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/notes/{id}', name: 'notes_single', methods: ["GET"])]
+    public function note_single(Request $request): Response
+    {
+
+        return $this->json($request->headers->all());
+    }
+
     #[Route('/notes', name: 'note_add', methods: ["POST"])]
     public function new(Request $request, ManagerRegistry $doctrine): Response
     {
