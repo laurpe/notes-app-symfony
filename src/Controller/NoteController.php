@@ -32,10 +32,16 @@ class NoteController extends AbstractController
     }
 
     #[Route('/notes/{id}', name: 'notes_single', methods: ["GET"])]
-    public function note_single(Request $request): Response
+    public function note_single(Request $request, ManagerRegistry $doctrine, int $id): Response
     {
+        $em = $doctrine->getManager();
 
-        return $this->json($request->headers->all());
+        $note = $em->getRepository(Note::class)->find($id);
+        if (!$note) {
+            return $this->json("No project found for id ".$id, 404);
+        }
+
+        return $this->json($note->getTitle());
     }
 
     #[Route('/notes', name: 'note_add', methods: ["POST"])]

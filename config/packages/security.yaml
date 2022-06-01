@@ -44,6 +44,16 @@ security:
               roles: IS_AUTHENTICATED_FULLY,
               methods: ["POST"],
           }
+        - {
+              path: ^/api/notes/,
+              roles: IS_AUTHENTICATED_FULLY,
+              methods: ["PUT"],
+          }
+        - {
+              path: ^/api/notes/,
+              roles: IS_AUTHENTICATED_FULLY,
+              methods: ["DELETE"],
+          }
 
 when@test:
     security:
